@@ -2,7 +2,6 @@
 """Task 0: Start a script"""
 import sys
 import os
-# import markdown
 
 
 def markdownhtml():
@@ -15,12 +14,13 @@ def markdownhtml():
         filename = sys.argv[1]
         output = sys.argv[2]
         if os.path.isfile(filename):
-            # markdown.markdownFromFile(
-            #     input=filename,
-            #     output=output,
-            #     encoding='utf-8',)
-            # with open(output, 'a') as file_output:
-            #     file_output.write("\n")
+            import markdown
+            markdown.markdownFromFile(
+                input=filename,
+                output=output,
+                encoding='utf-8',)
+            with open(output, 'a') as file_output:
+                file_output.write("\n")
             sys.exit(0)
         else:
             print("Missing {}".format(filename), file=sys.stderr)

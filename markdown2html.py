@@ -7,7 +7,7 @@ import markdown
 
 def markdownhtml():
     """Takes 2 arguments and print in stderr"""
-    if len(sys.argv) < 2:
+    if len(sys.argv) != 3:
         print("Usage: ./markdown2html.py README.md README.html",
               file=sys.stderr)
         sys.exit(1)
@@ -15,12 +15,12 @@ def markdownhtml():
         filename = sys.argv[1]
         output = sys.argv[2]
         if os.path.isfile(filename):
-            with open(filename, 'a') as writer:
-                writer.write("&nbsp;")
             markdown.markdownFromFile(
                 input=filename,
                 output=output,
-                encoding='utf8',)
+                encoding='utf-8',)
+            with open(output, 'a') as file_output:
+                file_output.write("\n")
             sys.exit(0)
         else:
             print("Missing {}".format(filename), file=sys.stderr)
